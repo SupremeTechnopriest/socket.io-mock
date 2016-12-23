@@ -1,0 +1,34 @@
+{
+  "name": "socket.io-mock",
+  "version": "1.0.0",
+  "description": "a mocked version of a socket.io socket for testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supremetechnopriest/socket.io-mock.git"
+  },
+  "keywords": [
+    "socket.io",
+    "test",
+    "mock",
+    "socket"
+  ],
+  "author": "Paul Oostenrijk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/supremetechnopriest/socket.io-mock/issues"
+  },
+  "homepage": "https://github.com/supremetechnopriest/socket.io-mock#readme",
+  "dependencies": {
+    "chai": "^2.2.0",
+    "debug": "^2.1.3",
+    "mocha": "^2.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^2.11.0",
+    "eslint-config-google": "^0.4.0"
+  }
+}

@@ -58,8 +58,6 @@ SocketMock.prototype = Object.create(EventEmitter.prototype);
  */
 SocketMock.prototype.emitEvent = function(eventKey, payload) {
   debug('Event %s on server side is dispatched with payload %s', eventKey, JSON.stringify(payload));
-
-  console.log('socketmock', 'emitEvent', eventKey);
   EventEmitter.prototype.emit.call(this, eventKey, createPayload(payload));
 };
 

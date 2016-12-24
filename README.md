@@ -1,5 +1,5 @@
 # socket.io-mock
-[![Build Status](https://travis-ci.org/supremetechnopriest/socket.io-mock.svg?branch=master)](https://travis-ci.org/supremetechnopriest/socket.io-mock)
+[![Build Status](https://travis-ci.org/SupremeTechnopriest/socket.io-mock.svg?branch=master)](https://travis-ci.org/SupremeTechnopriest/socket.io-mock)
 [![npm version](https://badge.fury.io/js/socket.io-mock.svg)](http://badge.fury.io/js/socket.io-mock)
 
 

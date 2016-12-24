@@ -22,7 +22,7 @@ SocketClient.prototype = Object.create(EventEmitter.prototype);
  */
 SocketClient.prototype.emit = function(eventKey, payload, in_callback) {
   var callback = in_callback || function() {};
-  console.log('SocketClient', 'emit', eventKey);
+  debug('SocketClient', 'emit', eventKey);
   callback(this._socketMock.emitEvent(eventKey, payload));
 };
 

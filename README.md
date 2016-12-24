@@ -3,7 +3,11 @@
 [![npm version](https://badge.fury.io/js/socket.io-mock.svg)](http://badge.fury.io/js/socket.io-mock)
 
 
-A mock to test the socket.io library implementation
+A mock to test the socket.io library implementation.  
+
+This is an enhanced copy of [socket-io-mock](https://github.com/glemmaPaul/socket-io-mock/pulls).
+
+> I made this project becuase `socket-io-mock` does not appear to be actively maintained.  This project takes advantage of `eventemitter` covering more of the socket.io-client library. If you see any bugs or lack of support for socket.io features, please drop an  [issue](https://github.com/supremetechnopriest/socket.io-mock/issues).
 
 # Installation
 ```bash

@@ -7,7 +7,7 @@ var index = createCommonjsModule(function (module) {
    * Expose `Emitter`.
    */
 
-  if (typeof module !== 'undefined') {
+  {
     module.exports = Emitter;
   }
 
@@ -268,7 +268,7 @@ var y = d * 365.25;
  * @api public
  */
 
-var index$1 = function index$1(val, options) {
+var index$1 = function index(val, options) {
   options = options || {};
   var type = typeof val === 'undefined' ? 'undefined' : _typeof(val);
   if (type === 'string' && val.length > 0) {

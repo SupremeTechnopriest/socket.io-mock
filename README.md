@@ -12,7 +12,9 @@
 
 A mock to test the socket.io library implementation.  
 
-🚀 Now written in ES6!  Takes advantage of treeshaking using [rollup](https://github.com/rollup/rollup). Don't forget to enable [pkg.module](https://github.com/rollup/rollup/wiki/pkg.module) in your rollup config.
+🚀 Now written in ES6!  Bundled with [`rollup`](https://github.com/rollup/rollup).
+
+> Don't forget to enable [`pkg.module`](https://github.com/rollup/rollup/wiki/pkg.module) in your rollup config.
 
 # Installation
 ```bash

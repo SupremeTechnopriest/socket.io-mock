@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const file = 'index';
 
 const prodTargets = [
-    { dest: 'dist/' + file + '.min.js', format: 'umd' }
+    { dest: 'dist/' + file + '.min.js', format: 'cjs' }
 ];
 const devTargets = [
     { dest: 'dist/' + file + '.js', format: 'es' }

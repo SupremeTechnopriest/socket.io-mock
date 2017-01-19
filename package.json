@@ -1,6 +1,6 @@
 {
   "name": "socket.io-mock",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "a mocked version of a socket.io socket for testing",
   "main": "dist/index.min.js",
   "module": "dist/index.js",

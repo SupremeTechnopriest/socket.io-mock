@@ -18,6 +18,7 @@ const devTargets = [
 export default {
 	entry: 'src/index.js',
 	moduleName: 'SocketMock',
+	external: [ 'debug' ],
 	plugins: [
 		resolve({
 			main: true,

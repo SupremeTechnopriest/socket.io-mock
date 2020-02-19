@@ -1,5 +1,0 @@
---compilers js:babel-register
---timeout 5000
---reporter spec
---bail
---check-leaks

@@ -1,2 +1,3 @@
 #!/bin/bash
-npm run lint && npm run test-server && npm run test-browser
+npm run lint
+NODE_ENV=test mocha test/runner-node.js

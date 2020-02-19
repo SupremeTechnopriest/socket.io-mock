@@ -1,48 +1,42 @@
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
-import bundleSize from 'rollup-plugin-bundle-size';
-import progress from 'rollup-plugin-progress';
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import bundleSize from 'rollup-plugin-bundle-size'
+import progress from 'rollup-plugin-progress'
+import { terser } from 'rollup-plugin-terser'
 
-const isProd = process.env.NODE_ENV === 'production';
-const file = 'index';
+const isProd = process.env.NODE_ENV === 'production'
+const input = 'src/index.js'
+const name = 'SocketMock'
+const file = 'index'
 
-const prodTargets = [
-    { dest: 'dist/' + file + '.min.js', format: 'cjs' }
-];
-const devTargets = [
-    { dest: 'dist/' + file + '.js', format: 'es' }
-];
+const plugins = [
+  resolve({
+    preferBuiltins: true
+  }),
+  commonjs({
+    ignoreGlobal: true,
+    include: 'node_modules/**'
+  }),
+  progress(),
+  bundleSize()
+]
 
-export default {
-	entry: 'src/index.js',
-	moduleName: 'SocketMock',
-	external: [ 'debug' ],
-	plugins: [
-		resolve({
-			main: true,
-			module: true,
-			jsnext: true,
-			browser: true,
-			preferBuiltins: true
-		}),
-		commonjs({
-			ignoreGlobal: true,
-			include: 'node_modules/**'
-		}),
-		babel({
-			babelrc: false,
-			presets: [ 'es2015-rollup' ],
-			plugins: [
-				'transform-object-rest-spread',
-				'transform-class-properties',
-				'transform-export-extensions'
-			]
-		}),
-        (isProd && uglify()),
-		progress(),
-		bundleSize()
-	],
-	targets: isProd ? prodTargets : devTargets
-};
+export default [{
+  input,
+  plugins,
+  output: {
+    name,
+    file: `dist/${file}.es.js`,
+    format: 'es'
+  }
+}, {
+  input,
+  plugins: plugins.concat([
+    isProd && terser()
+  ]),
+  output: {
+    name,
+    file: `dist/${file}.js`,
+    format: 'cjs'
+  }
+}]

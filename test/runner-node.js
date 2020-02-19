@@ -1,5 +1,5 @@
-global.expect = require('chai').expect;
-global.assert = require('chai').assert;
-global.should = require('chai').should();
-
-import './index';
+const chai = require('chai')
+global.expect = chai.expect
+global.assert = chai.assert
+global.should = chai.should()
+require('./index')

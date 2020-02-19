@@ -2,8 +2,8 @@
   "name": "socket.io-mock",
   "version": "1.2.4",
   "description": "a mocked version of a socket.io socket for testing",
-  "main": "dist/index.min.js",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "scripts": {
     "lint": "standard",
     "test": "./scripts/test.sh",

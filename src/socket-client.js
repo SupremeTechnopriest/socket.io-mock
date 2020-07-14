@@ -9,6 +9,7 @@ export default class SocketClient extends Emitter {
     super()
     this._socketMock = socketMock
     this._emitFn = Emitter.prototype.emit
+    this.disconnected = false
   }
 
   /**
@@ -34,5 +35,21 @@ export default class SocketClient extends Emitter {
    */
   fireEvent (eventKey, payload) {
     this._emitFn(eventKey, payload)
+  }
+
+  /**
+   * Close the socket
+   */
+  close () {
+    this.disconnected = true
+    this.emit('disconnect', 'io client disconnect')
+    return this
+  }
+
+  /**
+   * Disconnet the socket alias for close
+   */
+  disconnect () {
+    return this.close()
   }
 }

@@ -92,4 +92,14 @@ export default class SocketMock extends Emitter {
   monitor (value) {
     return value
   }
+
+  /**
+   * Closing the socket server
+   * @param  {Function} cb
+   */
+  disconnect () {
+    this.emit('disconnecting', 'io server disconnect')
+    this.emit('disconnect', 'io server disconnect')
+    return this
+  }
 }

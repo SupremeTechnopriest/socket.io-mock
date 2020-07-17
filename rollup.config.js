@@ -1,7 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import bundleSize from 'rollup-plugin-bundle-size'
-import progress from 'rollup-plugin-progress'
 import { terser } from 'rollup-plugin-terser'
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -17,7 +16,6 @@ const plugins = [
     ignoreGlobal: true,
     include: 'node_modules/**'
   }),
-  progress(),
   bundleSize()
 ]
 

@@ -187,6 +187,8 @@ class SocketClient extends componentEmitter {
     super();
     this._socketMock = socketMock;
     this._emitFn = componentEmitter.prototype.emit;
+    this.connected = true;
+    this.disconnected = false;
   }
 
   /**
@@ -212,6 +214,23 @@ class SocketClient extends componentEmitter {
    */
   fireEvent (eventKey, payload) {
     this._emitFn(eventKey, payload);
+  }
+
+  /**
+   * Close the socket
+   */
+  close () {
+    this.disconnected = true;
+    this.connected = false;
+    this.emit('disconnect', 'io client disconnect');
+    return this
+  }
+
+  /**
+   * Disconnet the socket alias for close
+   */
+  disconnect () {
+    return this.close()
   }
 }
 
@@ -305,6 +324,16 @@ class SocketMock extends componentEmitter {
   **/
   monitor (value) {
     return value
+  }
+
+  /**
+   * Closing the socket server
+   * @param  {Function} cb
+   */
+  disconnect () {
+    this.emit('disconnecting', 'io server disconnect');
+    this.emit('disconnect', 'io server disconnect');
+    return this
   }
 }
 

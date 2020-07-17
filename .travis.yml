@@ -2,8 +2,8 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - "6"
-  - "6.1"
+  - "12"
+  - "14"
 addons:
   code_climate:
     repo_token:

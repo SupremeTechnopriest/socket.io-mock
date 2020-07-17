@@ -14,7 +14,7 @@ A mock to test the socket.io library implementation.
 
 🚀 Now written in ES6!  Bundled with [`rollup`](https://github.com/rollup/rollup).
 
-> Don't forget to enable [`pkg.module`](https://github.com/rollup/rollup/wiki/pkg.module) in your rollup config.
+> NEW! Added support for disconnect() and close()
 
 # Installation
 ```bash

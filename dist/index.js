@@ -189,6 +189,7 @@ class SocketClient extends componentEmitter {
     super();
     this._socketMock = socketMock;
     this._emitFn = componentEmitter.prototype.emit;
+    this.connected = true;
     this.disconnected = false;
   }
 
@@ -222,6 +223,7 @@ class SocketClient extends componentEmitter {
    */
   close () {
     this.disconnected = true;
+    this.connected = false;
     this.emit('disconnect', 'io client disconnect');
     return this
   }

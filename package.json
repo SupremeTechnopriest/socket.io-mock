@@ -7,8 +7,6 @@
   "scripts": {
     "lint": "standard",
     "test": "./scripts/test.sh",
-    "test-server": "./scripts/test-server.sh",
-    "test-browser": "./scripts/test-browser.sh",
     "build": "./scripts/build.sh"
   },
   "repository": {

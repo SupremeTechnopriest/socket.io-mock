@@ -205,15 +205,14 @@ class SocketClient extends componentEmitter {
    * Emit an event to the server client
    * @param  {string}   eventKey -- The event key that needs to be attached
    * @param  {object}   payload  -- The payload that needs to be attached to the emit
-   * @param  {function} in_callback
+   * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
-  emit (eventKey, payload, cb) {
+  emit (eventKey, payload, ack) {
     if (typeof payload === 'function') {
       payload = null;
-      cb = payload;
+      ack = payload;
     }
-    const callback = cb || function () {};
-    callback(this._socketMock.emitEvent(eventKey, payload));
+    this._socketMock.emitEvent(eventKey, payload, ack);
   }
 
   /**
@@ -288,9 +287,10 @@ class SocketMock extends componentEmitter {
    * Emit an event to the server (used by client)
    * @param  {string} eventKey -- The event key
    * @param  {object} payload -- Additional payload
+   * @param  {function} ack -- The ack argument is optional. When server call it payload reply will be delivered to client
   **/
-  emitEvent (eventKey, payload) {
-    this._emitFn(eventKey, createPayload(payload));
+  emitEvent (eventKey, payload, ack) {
+    this._emitFn(eventKey, createPayload(payload), ack);
   }
 
   /**

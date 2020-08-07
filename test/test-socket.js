@@ -29,6 +29,19 @@ describe('Utils: Socket', () => {
     socket.socketClient.emit('test', eventPayload)
   })
 
+  it('should call ack on the server side when on() is assigned ack callback must be called', done => {
+    const ackPayload = { foo: 'bar' }
+    socket.on('test', (payload, ack) => {
+      ack(ackPayload)
+    })
+
+    socket.socketClient.emit('test', {}, (payload) => {
+      payload.should.have.property('foo')
+      payload.foo.should.be.equal(ackPayload.foo)
+      done()
+    })
+  })
+
   it('should fire event on the client side when on() is assigned', done => {
     socket.socketClient.on('test', payload => {
       payload.should.have.property('never')

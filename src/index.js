@@ -47,8 +47,8 @@ export default class SocketMock extends Emitter {
    * @param  {object} payload -- Additional payload
    * @param  {function} ack -- The ack argument is optional. When server call it payload reply will be delivered to client
   **/
-  emitEvent (eventKey, payload, ack) {
-    this._emitFn(eventKey, createPayload(payload), ack)
+  emitEvent (eventKey, args, ack) {
+    this._emitFn(eventKey, ...args.map(createPayload), ack)
   }
 
   /**

@@ -19,12 +19,12 @@ export default class SocketClient extends Emitter {
    * @param  {object}   payload  -- The payload that needs to be attached to the emit
    * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
-  emit (eventKey, payload, ack) {
-    if (typeof payload === 'function') {
-      payload = null
-      ack = payload
+  emit (eventKey, ...args) {
+    let ack
+    if (typeof args[args.length - 1] === 'function') {
+      ack = args.pop()
     }
-    this._socketMock.emitEvent(eventKey, payload, ack)
+    this._socketMock.emitEvent(eventKey, args, ack)
   }
 
   /**

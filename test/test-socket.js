@@ -29,6 +29,18 @@ describe('Utils: Socket', () => {
     socket.socketClient.emit('test', eventPayload)
   })
 
+  it('should fire event on the server side when on() is assigned and multiple parameters are passed', done => {
+    socket.on('test', (arg1, arg2, arg3) => {
+      arg1.should.be.equal(1)
+      arg2.should.be.equal(2)
+      arg3.should.be.equal(3)
+
+      done()
+    })
+
+    socket.socketClient.emit('test', 1, 2, 3)
+  })
+
   it('should call ack on the server side when on() is assigned ack callback must be called', done => {
     const ackPayload = { foo: 'bar' }
     socket.on('test', (payload, ack) => {
@@ -38,6 +50,16 @@ describe('Utils: Socket', () => {
     socket.socketClient.emit('test', {}, (payload) => {
       payload.should.have.property('foo')
       payload.foo.should.be.equal(ackPayload.foo)
+      done()
+    })
+  })
+
+  it('should call ack on the server side when on() is assigned and no payload was passed', done => {
+    socket.on('test', ack => {
+      ack()
+    })
+
+    socket.socketClient.emit('test', () => {
       done()
     })
   })

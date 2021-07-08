@@ -1,6 +1,6 @@
-import Emitter from 'component-emitter'
+import 'emittery';
 
-export default class SocketClient extends Emitter {
+export default class SocketClient extends emittery {
   /**
    * A mocking class for the Socket IO Client side
    * @param {SocketMock} socketMock
@@ -8,7 +8,7 @@ export default class SocketClient extends Emitter {
   constructor (socketMock) {
     super()
     this._socketMock = socketMock
-    this._emitFn = Emitter.prototype.emit
+    this._emitFn = emittery.prototype.emit
     this.connected = true
     this.disconnected = false
   }

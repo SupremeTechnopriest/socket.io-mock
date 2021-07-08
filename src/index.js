@@ -1,4 +1,4 @@
-import Emitter from 'component-emitter'
+import 'emittery';
 import SocketClient from './socket-client'
 
 const createPayload = function (object) {
@@ -8,7 +8,7 @@ const createPayload = function (object) {
 /**
  * A mocking class for the Socket IO Server side
  */
-export default class SocketMock extends Emitter {
+export default class SocketMock extends emittery {
   /**
    * Creates a new SocketMock instance
   **/
@@ -16,7 +16,7 @@ export default class SocketMock extends Emitter {
     super()
     this.joinedRooms = this.rooms = []
     this.socketClient = new SocketClient(this)
-    this._emitFn = Emitter.prototype.emit
+    this._emitFn = emittery.prototype.emit
     this.generalCallbacks = {}
     this.broadcast = {
       /**

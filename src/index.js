@@ -8,7 +8,7 @@ const createPayload = function (object) {
 /**
  * A mocking class for the Socket IO Server side
  */
-export default class SocketMock extends emittery {
+export default class SocketMock extends Emittery {
   /**
    * Creates a new SocketMock instance
   **/
@@ -16,7 +16,7 @@ export default class SocketMock extends emittery {
     super()
     this.joinedRooms = this.rooms = []
     this.socketClient = new SocketClient(this)
-    this._emitFn = emittery.prototype.emit
+    this._emitFn = Emittery.prototype.emit
     this.generalCallbacks = {}
     this.broadcast = {
       /**

@@ -1,6 +1,6 @@
 import 'emittery';
 
-export default class SocketClient extends emittery {
+export default class SocketClient extends Emittery {
   /**
    * A mocking class for the Socket IO Client side
    * @param {SocketMock} socketMock
@@ -8,7 +8,7 @@ export default class SocketClient extends emittery {
   constructor (socketMock) {
     super()
     this._socketMock = socketMock
-    this._emitFn = emittery.prototype.emit
+    this._emitFn = Emittery.prototype.emit
     this.connected = true
     this.disconnected = false
   }

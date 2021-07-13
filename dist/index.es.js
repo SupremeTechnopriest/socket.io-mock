@@ -459,7 +459,7 @@ Object.defineProperty(Emittery, 'listenerRemoved', {
 	configurable: false
 });
 
-class SocketClient extends emittery {
+class SocketClient extends Emittery {
   /**
    * A mocking class for the Socket IO Client side
    * @param {SocketMock} socketMock
@@ -467,7 +467,7 @@ class SocketClient extends emittery {
   constructor (socketMock) {
     super();
     this._socketMock = socketMock;
-    this._emitFn = emittery.prototype.emit;
+    this._emitFn = Emittery.prototype.emit;
     this.connected = true;
     this.disconnected = false;
   }
@@ -521,7 +521,7 @@ const createPayload = function (object) {
 /**
  * A mocking class for the Socket IO Server side
  */
-class SocketMock extends emittery {
+class SocketMock extends Emittery {
   /**
    * Creates a new SocketMock instance
   **/
@@ -529,7 +529,7 @@ class SocketMock extends emittery {
     super();
     this.joinedRooms = this.rooms = [];
     this.socketClient = new SocketClient(this);
-    this._emitFn = emittery.prototype.emit;
+    this._emitFn = Emittery.prototype.emit;
     this.generalCallbacks = {};
     this.broadcast = {
       /**

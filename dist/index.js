@@ -481,11 +481,7 @@ class SocketClient extends Emittery {
    * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
   emit (eventKey, ...args) {
-    let ack;
-    if (typeof args[args.length - 1] === 'function') {
-      ack = args.pop();
-    }
-    this._socketMock.emitEvent(eventKey, args, ack);
+    this._socketMock.emitEvent(eventKey, args);
   }
 
   /**
@@ -560,10 +556,9 @@ class SocketMock extends Emittery {
    * Emit an event to the server (used by client)
    * @param  {string} eventKey -- The event key
    * @param  {object} payload -- Additional payload
-   * @param  {function} ack -- The ack argument is optional. When server call it payload reply will be delivered to client
   **/
-  emitEvent (eventKey, args, ack) {
-    this._emitFn(eventKey, ...args.map(createPayload), ack);
+  emitEvent (eventKey, args) {
+    this._emitFn(eventKey, args);
   }
 
   /**

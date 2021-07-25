@@ -20,11 +20,7 @@ export default class SocketClient extends Emittery {
    * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
   emit (eventKey, ...args) {
-    let ack
-    if (typeof args[args.length - 1] === 'function') {
-      ack = args.pop()
-    }
-    this._socketMock.emitEvent(eventKey, args, ack)
+    this._socketMock.emitEvent(eventKey, args)
   }
 
   /**

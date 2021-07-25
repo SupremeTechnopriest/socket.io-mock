@@ -1,6 +1,6 @@
-import Emitter from 'component-emitter'
+import 'emittery';
 
-export default class SocketClient extends Emitter {
+export default class SocketClient extends Emittery {
   /**
    * A mocking class for the Socket IO Client side
    * @param {SocketMock} socketMock
@@ -8,7 +8,7 @@ export default class SocketClient extends Emitter {
   constructor (socketMock) {
     super()
     this._socketMock = socketMock
-    this._emitFn = Emitter.prototype.emit
+    this._emitFn = Emittery.prototype.emit
     this.connected = true
     this.disconnected = false
   }
@@ -20,11 +20,7 @@ export default class SocketClient extends Emitter {
    * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
   emit (eventKey, ...args) {
-    let ack
-    if (typeof args[args.length - 1] === 'function') {
-      ack = args.pop()
-    }
-    this._socketMock.emitEvent(eventKey, args, ack)
+    this._socketMock.emitEvent(eventKey, args)
   }
 
   /**

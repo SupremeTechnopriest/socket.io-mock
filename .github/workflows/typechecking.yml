@@ -1,0 +1,41 @@
+name: Typechecking
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**/tsconfig.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - '.github/workflows/typechecking.yml'
+  pull_request:
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**/tsconfig.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - '.github/workflows/typechecking.yml'
+
+defaults:
+  run:
+    shell: 'bash'
+
+jobs:
+  typescript:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      # TODO: Install not all dependencies, but only those required for this workflow
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - run: yarn tsc

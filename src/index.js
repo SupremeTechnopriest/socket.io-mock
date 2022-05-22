@@ -101,6 +101,8 @@ export default class SocketMock extends Emitter {
   disconnect () {
     this.emit('disconnecting', 'io server disconnect')
     this.emit('disconnect', 'io server disconnect')
+    this._emitFn('disconnecting', 'io server disconnect')
+    this._emitFn('disconnect', 'io server disconnect')
     return this
   }
 }

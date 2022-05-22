@@ -209,12 +209,12 @@ class SocketClient extends componentEmitter {
    * @param  {object}   payload  -- The payload that needs to be attached to the emit
    * @param  {function} ack -- The ack argument is optional and will be called with the server answer.
    */
-  emit (eventKey, payload, ack) {
-    if (typeof payload === 'function') {
-      payload = null;
-      ack = payload;
+  emit (eventKey, ...args) {
+    let ack;
+    if (typeof args[args.length - 1] === 'function') {
+      ack = args.pop();
     }
-    this._socketMock.emitEvent(eventKey, payload, ack);
+    this._socketMock.emitEvent(eventKey, args, ack);
   }
 
   /**
@@ -291,8 +291,8 @@ class SocketMock extends componentEmitter {
    * @param  {object} payload -- Additional payload
    * @param  {function} ack -- The ack argument is optional. When server call it payload reply will be delivered to client
   **/
-  emitEvent (eventKey, payload, ack) {
-    this._emitFn(eventKey, createPayload(payload), ack);
+  emitEvent (eventKey, args, ack) {
+    this._emitFn(eventKey, ...args.map(createPayload), ack);
   }
 
   /**
@@ -345,6 +345,8 @@ class SocketMock extends componentEmitter {
   disconnect () {
     this.emit('disconnecting', 'io server disconnect');
     this.emit('disconnect', 'io server disconnect');
+    this._emitFn('disconnecting', 'io server disconnect');
+    this._emitFn('disconnect', 'io server disconnect');
     return this
   }
 }
